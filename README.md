@@ -40,6 +40,7 @@ ai-java/
 
 
 
+
 ## 🚀 실행 방법
 
 ### 1. IntelliJ IDEA (추천)
