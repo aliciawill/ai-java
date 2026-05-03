@@ -25,6 +25,7 @@
 ## 📁 프로젝트 구조
 
 ```
+
 ai-java/
 ├── src/
 │   └── test/
@@ -33,6 +34,7 @@ ai-java/
 ├── out/production/ai-java/test/      # 컴파일된 클래스 파일
 ├── .gitignore
 └── README.md                         # 이 파일
+
 ```
 
 ---
