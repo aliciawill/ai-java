@@ -24,28 +24,20 @@
 
 ## 📁 프로젝트 구조
 
-```mermaid
-graph TD
-    A[ai-java/] --> B[.gitignore]
-    A --> C[README.md]
-    A --> D[src/]
-    A --> E[out/]
-    
-    D --> F[test/]
-    F --> G[SimpleCalculator.java]
-    F --> H[calc_icon.png]
-    
-    E --> I[production/]
-    I --> J[ai-java/]
-    J --> K[test/]
-    K --> L[SimpleCalculator.class]
-    K --> M[calc_icon.png]
-    
-    style A fill:#e3f2fd,stroke:#1976d2
-    style D fill:#f0f4c3,stroke:#689f38
-    style F fill:#fff3e0,stroke:#fb8c00
+ai-java/
+├── src/
+│   └── test/
+│       ├── SimpleCalculator.java     # 메인 소스 코드
+│       └── calc_icon.png             # 계산기 아이콘
+├── out/
+│   └── production/
+│       └── ai-java/
+│           └── test/
+│               ├── SimpleCalculator.class
+│               └── calc_icon.png
+├── .gitignore
+└── README.md
 
-```
 
 ## 🚀 실행 방법
 
