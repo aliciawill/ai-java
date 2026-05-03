@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
 
+
+//클래스명 자동 생성
 public class SimpleCalculator extends JFrame {
     private JTextField num1Field;
     private JTextField num2Field;
@@ -23,7 +25,7 @@ public class SimpleCalculator extends JFrame {
         JLabel titleLabel = new JLabel("My Calculator", JLabel.CENTER);
         titleLabel.setForeground(Color.WHITE);
         titleLabel.setFont(new Font("Serif", Font.BOLD, 24));
-        
+
         // 이미지 추가 (파일이 없을 경우 대비하여 체크)
         try {
             ImageIcon icon = new ImageIcon("src/test/calc_icon.png");
@@ -32,7 +34,7 @@ public class SimpleCalculator extends JFrame {
         } catch (Exception e) {
             System.out.println("Image not found, skipping icon.");
         }
-        
+
         topPanel.add(titleLabel);
         add(topPanel, BorderLayout.NORTH);
 
@@ -63,7 +65,7 @@ public class SimpleCalculator extends JFrame {
         bottomPanel.setBackground(new Color(240, 248, 255));
 
         String[] ops = {"+", "-", "*", "/"};
-        Color[] btnColors = {new Color(255, 182, 193), new Color(173, 216, 230), 
+        Color[] btnColors = {new Color(255, 182, 193), new Color(173, 216, 230),
                              new Color(144, 238, 144), new Color(255, 218, 185)};
 
         for (int i = 0; i < ops.length; i++) {
