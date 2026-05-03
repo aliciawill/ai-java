@@ -27,8 +27,8 @@
 ai-java/
 ├── src/
 │   └── test/
-│       ├── SimpleCalculator.java     # 메인 소스 코드
-│       └── calc_icon.png             # 계산기 아이콘
+│       ├── SimpleCalculator.java          # 메인 소스 코드
+│       └── calc_icon.png                  # 계산기 아이콘
 ├── out/
 │   └── production/
 │       └── ai-java/
@@ -37,6 +37,7 @@ ai-java/
 │               └── calc_icon.png
 ├── .gitignore
 └── README.md
+
 
 
 ## 🚀 실행 방법
