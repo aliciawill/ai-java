@@ -4,11 +4,12 @@
 간단한 사칙연산(+, -, *, /)을 지원하며, 색상 테마와 아이콘을 적용해 시각적으로 매력적으로 제작되었습니다.
 
 # 메인화면
+<img width="454" height="356" alt="1" src="https://github.com/user-attachments/assets/ab5c52c0-9733-4b18-ab9b-3913699a05a6" />
 
 <br>
 
 # 실행결과
-
+<img width="726" height="361" alt="2" src="https://github.com/user-attachments/assets/b19dfde9-23d9-4992-a67b-77a59e293840" />
 <br>
 
 
