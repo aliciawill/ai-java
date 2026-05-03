@@ -4,7 +4,8 @@
 **Java Swing**을 활용한 **예쁜 GUI 계산기** 프로젝트입니다.  
 간단한 사칙연산(+, -, *, /)을 지원하며, 색상 테마와 아이콘을 적용해 시각적으로 매력적으로 제작되었습니다.
 
-![Calculator Screenshot](src/test/calc_icon.png)
+![메인화면](./1.png) <br>
+![실행결과](./2.png) <br>
 
 ---
 
