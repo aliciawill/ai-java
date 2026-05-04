@@ -29,22 +29,213 @@
 
 ## 📁 프로젝트 구조
 
+이 저장소는 **독립 실행되는 두 가지 Swing 예제**(계산기, 일기)와 **MySQL 일기 저장** 모듈로 구성됩니다.
+
+```text
 ai-java/
-├── src/
-│   └── test/
-│       ├── SimpleCalculator.java          # 메인 소스 코드
-│       └── calc_icon.png                  # 계산기 아이콘
-├── out/
-│   └── production/
-│       └── ai-java/
-│           └── test/
-│               ├── SimpleCalculator.class
-│               └── calc_icon.png
+├── src/test/
+│   ├── SimpleCalculator.java   # 사칙연산 GUI (main)
+│   ├── DiaryUI.java            # 일기 GUI (main)
+│   ├── DiaryDAO.java           # entries 테이블 삽입·조회
+│   ├── DiaryDTO.java           # 일기 행(레코드) 모델
+│   ├── DBConnector.java        # JDBC 연결 (diary_db)
+│   ├── calc_icon.png           # (선택) 코드에서 참조
+│   └── diary_icon.png          # (선택) 코드에서 참조
+├── lib/
+│   └── mysql-connector-j-9.1.0.jar   # MySQL JDBC 드라이버
+├── out/ … (컴파일 산출물)
 ├── .gitignore
 └── README.md
+```
 
+---
 
+## 파일 간 관계 (Mermaid)
 
+`SimpleCalculator`는 DB를 쓰지 않습니다. `DiaryUI`만 `DiaryDAO` → `DBConnector` → MySQL로 이어집니다.
+
+```mermaid
+flowchart TB
+    subgraph entry["실행 진입점"]
+        M1["SimpleCalculator.main"]
+        M2["DiaryUI.main"]
+    end
+
+    subgraph calc["계산기 앱"]
+        SC["SimpleCalculator.java"]
+        IC["calc_icon.png"]
+        SC -.-> IC
+    end
+
+    subgraph diary["일기 앱 + DB"]
+        UI["DiaryUI.java"]
+        DAO["DiaryDAO.java"]
+        DTO["DiaryDTO.java"]
+        CONN["DBConnector.java"]
+        II["diary_icon.png"]
+        DB[("MySQL<br/>diary_db.entries")]
+
+        UI --> DAO
+        DAO --> DTO
+        DAO --> CONN
+        CONN --> DB
+        UI -.-> II
+    end
+
+    M1 --> SC
+    M2 --> UI
+```
+
+---
+
+## 클래스 다이어그램 (Mermaid)
+
+```mermaid
+classDiagram
+    class JFrame
+    class SimpleCalculator {
+        -JTextField num1Field
+        -JTextField num2Field
+        +main(String[] args)$ void
+    }
+    class CalcActionListener {
+        +actionPerformed(ActionEvent) void
+    }
+    class DiaryUI {
+        -DiaryDAO dao
+        +main(String[] args)$ void
+    }
+    class DiaryDAO {
+        +insert(DiaryDTO dto) void
+        +findAll() List~DiaryDTO~
+    }
+    class DiaryDTO {
+        -int id
+        -String title
+        -String content
+        -Timestamp createdAt
+    }
+    class DBConnector {
+        +getConnection()$ Connection
+    }
+
+    JFrame <|-- SimpleCalculator
+    JFrame <|-- DiaryUI
+    SimpleCalculator +-- CalcActionListener : 내부 클래스
+    DiaryUI o-- DiaryDAO : 사용
+    DiaryDAO ..> DiaryDTO : 생성·매핑
+    DiaryDAO ..> DBConnector : 연결 획득
+```
+
+---
+
+## 시퀀스 다이어그램 (Mermaid)
+
+### 일기 저장 후 목록 새로고침
+
+사용자가 **Save Memory**를 누르면 `insert` 후 `findAll()`로 리스트를 다시 채웁니다.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor User as 사용자
+    participant UI as DiaryUI
+    participant DAO as DiaryDAO
+    participant Conn as DBConnector
+    participant DB as MySQL
+
+    User->>UI: Save Memory 클릭
+    UI->>UI: saveDiary()
+    UI->>DAO: insert(new DiaryDTO(title, content))
+    DAO->>Conn: getConnection()
+    Conn-->>DAO: Connection
+    DAO->>DB: INSERT INTO entries (title, content)
+    DAO-->>UI: 완료
+    UI->>DAO: findAll()
+    DAO->>Conn: getConnection()
+    DAO->>DB: SELECT * FROM entries ORDER BY created_at DESC
+    DAO-->>UI: List DiaryDTO
+    UI->>UI: JList 목록 갱신
+    UI->>User: JOptionPane 성공 메시지
+```
+
+### 계산기 연산
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor User as 사용자
+    participant Frame as SimpleCalculator
+    participant L as CalcActionListener
+
+    User->>Frame: 연산 버튼 클릭
+    Frame->>L: actionPerformed(ActionEvent)
+    L->>L: Double.parseDouble, switch(op)
+    alt 0으로 나누기
+        L->>User: 오류 JOptionPane
+    else 정상
+        L->>User: 결과 JOptionPane
+    end
+```
+
+---
+
+## 데이터베이스 (MySQL)
+
+`DBConnector`는 JDBC URL `jdbc:mysql://localhost:3307/diary_db` 와 데이터베이스 `diary_db`를 사용합니다. 포트·계정은 환경에 맞게 `DBConnector.java`에서 조정하면 됩니다.
+
+### ERD (논리 모델)
+
+일기 한 건은 `entries` 테이블의 한 행입니다. `DiaryDAO`는 `id`, `title`, `content`, `created_at` 컬럼을 가정합니다.
+
+```mermaid
+erDiagram
+    ENTRIES {
+        int id PK "AUTO_INCREMENT"
+        varchar title "일기 제목"
+        text content "본문"
+        timestamp created_at "작성 시각(기본값 NOW)"
+    }
+```
+
+### DDL 예시
+
+아래는 코드와 맞춘 최소 스키마 예시입니다.
+
+```sql
+CREATE DATABASE IF NOT EXISTS diary_db
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+
+USE diary_db;
+
+CREATE TABLE IF NOT EXISTS entries (
+    id          INT AUTO_INCREMENT PRIMARY KEY,
+    title       VARCHAR(255) NOT NULL,
+    content     TEXT         NOT NULL,
+    created_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+```
+
+### DML 예시
+
+`DiaryDAO.insert`와 동일한 형태의 삽입, `findAll`과 유사한 조회입니다.
+
+```sql
+-- 새 일기 저장 (앱의 PreparedStatement와 동일 의미)
+INSERT INTO entries (title, content)
+VALUES ('오늘의 기록', '날씨가 좋았다.');
+
+-- 목록 조회 (최신순, DAO의 SQL과 동일)
+SELECT id, title, content, created_at
+FROM entries
+ORDER BY created_at DESC;
+
+-- 조건부 검색 예시 (현재 DAO에는 없음, 확장 시 참고)
+SELECT * FROM entries WHERE title LIKE '%일기%' ORDER BY created_at DESC;
+```
+
+---
 
 ## 🚀 실행 방법
 
@@ -61,6 +252,19 @@ javac -d out src/test/SimpleCalculator.java
 # 실행
 java -cp out test.SimpleCalculator
 ```
+
+### 3. 일기 앱(DiaryUI) + MySQL
+
+MySQL에 `diary_db`·`entries` 테이블을 만든 뒤, 드라이버를 classpath에 포함합니다.
+
+```bash
+javac -encoding UTF-8 -d out -cp "lib/mysql-connector-j-9.1.0.jar" \
+  src/test/DBConnector.java src/test/DiaryDTO.java src/test/DiaryDAO.java src/test/DiaryUI.java
+
+java -cp "out:lib/mysql-connector-j-9.1.0.jar" test.DiaryUI
+```
+
+Windows에서는 classpath 구분자를 `;`로 바꿉니다: `-cp "out;lib/mysql-connector-j-9.1.0.jar"`.
 
 ---
 
@@ -255,6 +459,3 @@ public class SimpleCalculator extends JFrame {
 ---
 
 **Made with ❤️ using Java Swing**
-
-
-```
