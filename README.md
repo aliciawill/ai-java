@@ -197,15 +197,7 @@ public class SimpleCalculator extends JFrame {
 
 ## 🖼️ 실행 화면 예시
 
-### 1. 메인 화면
-![메인 화면](https://via.placeholder.com/450x350/ F0F8FF/6495ED?text=Colorful+Calculator)
-
-(실제 실행 시 상단에 아이콘이 표시되고, pastel 색상의 예쁜 계산기가 나타납니다.)
-
-### 2. 계산 결과 예시
-![결과 화면](https://via.placeholder.com/400x150/98FB98/006400?text=The+result+is:+42.0)
-
-### 3. 오류 처리 화면
+오류 처리 화면
 - 숫자 미입력 / 문자 입력 → 경고창
 - 0으로 나누기 → 오류 메시지
 
@@ -264,8 +256,5 @@ public class SimpleCalculator extends JFrame {
 
 **Made with ❤️ using Java Swing**
 
-문의사항이나 개선 제안이 있으시면 언제든지 말씀해주세요!
-```
 
-**사용법**: 위 내용을 그대로 복사해서 프로젝트 루트에 `README.md` 파일로 저장하세요.  
-필요하면 실제 실행 화면을 캡처해서 `screenshots/` 폴더에 넣고 경로를 수정하면 더 완벽합니다!
+```
