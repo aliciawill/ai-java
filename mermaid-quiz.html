@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mermaid 연습 문제</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4ff;
+      padding: 24px;
+      color: #2d3748;
+    }
+    h1 {
+      text-align: center;
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+      color: #3730a3;
+    }
+    .subtitle {
+      text-align: center;
+      color: #6b7280;
+      margin-bottom: 32px;
+      font-size: 0.9rem;
+    }
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .q-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .q-num {
+      background: #4f46e5;
+      color: white;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .q-title { font-size: 1rem; font-weight: 600; color: #1e1b4b; }
+    .q-badge {
+      margin-left: auto;
+      background: #e0e7ff;
+      color: #4338ca;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .problem-box {
+      background: #f8faff;
+      border: 1.5px solid #c7d2fe;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+      line-height: 1.8;
+      font-size: 0.95rem;
+    }
+    .problem-box strong { color: #4f46e5; }
+    .hint { font-size: 0.82rem; color: #9ca3af; margin-bottom: 14px; }
+    .hint span { color: #f59e0b; }
+    .answer-toggle {
+      background: none;
+      border: 2px solid #4f46e5;
+      color: #4f46e5;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .answer-toggle:hover { background: #4f46e5; color: white; }
+    .answer-section {
+      display: none;
+      margin-top: 20px;
+      border-top: 1.5px dashed #c7d2fe;
+      padding-top: 20px;
+    }
+    .answer-section.open { display: block; }
+    .answer-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #059669;
+      margin-bottom: 8px;
+    }
+    pre {
+      background: #1e1b4b;
+      color: #a5f3fc;
+      border-radius: 10px;
+      padding: 16px;
+      font-size: 0.85rem;
+      overflow-x: auto;
+      line-height: 1.7;
+      margin-bottom: 16px;
+      white-space: pre;
+    }
+    .diagram-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #6366f1;
+      margin-bottom: 8px;
+    }
+    .diagram-wrap {
+      display: flex;
+      justify-content: center;
+      background: #fafafa;
+      border-radius: 10px;
+      padding: 16px;
+      border: 1px solid #e5e7eb;
+      min-height: 60px;
+    }
+  </style>
+</head>
+<body>
+  <h1>&#x1F9DC; Mermaid &#xC5F0;&#xC2B5; &#xBB38;&#xC81C;</h1>
+  <p class="subtitle">&#xC9C1;&#xC811; &#xCF54;&#xB4DC;&#xB97C; &#xC791;&#xC131;&#xD574;&#xBCF4;&#xACE0;, &#xC815;&#xB2F5;&#xC744; &#xD655;&#xC778;&#xD558;&#xC138;&#xC694;!</p>
+
+  <div class="card">
+    <div class="q-header">
+      <div class="q-num">1</div>
+      <div class="q-title">&#xB85C;&#xADF8;&#xC778; &#xD50C;&#xB85C;&#xC6B0;&#xCC28;&#xD2B8; &#xADF8;&#xB9AC;&#xAE30;</div>
+      <span class="q-badge">Flowchart</span>
+    </div>
+    <div class="problem-box">
+      &#xC544;&#xB798; &#xD750;&#xB984;&#xC744; <strong>&#xD50C;&#xB85C;&#xC6B0;&#xCC28;&#xD2B8;(flowchart TD)</strong>&#xB85C; &#xC791;&#xC131;&#xD558;&#xC138;&#xC694;.<br>
+      &#x2460; <strong>&#xC2DC;&#xC791;</strong> &#x2192; &#x2461; <strong>&#xC544;&#xC774;&#xB514;/&#xBE44;&#xBC00;&#xBC88;&#xD638; &#xC785;&#xB825;</strong> &#x2192; &#x2462; <strong>&#xB85C;&#xADF8;&#xC778; &#xC131;&#xACF5;?</strong> (&#xC870;&#xAC74;)<br>
+      &#x2192; Yes: <strong>&#xBA54;&#xC778; &#xD398;&#xC774;&#xC9C0; &#xC774;&#xB3D9;</strong> / No: <strong>&#xC624;&#xB958; &#xBA54;&#xC2DC;&#xC9C0; &#xD45C;&#xC2DC;</strong> &#x2192; &#x2461;&#xB85C; &#xB3CC;&#xC544;&#xAC10;
+    </div>
+    <p class="hint"><span>&#x1F4A1; &#xD78C;&#xD2B8;</span>: &#xC870;&#xAC74; &#xB178;&#xB4DC;&#xB294; <code>{}</code>, &#xBC18;&#xBCF5; &#xC5F0;&#xACB0;&#xB3C4; &#xD654;&#xC0B4;&#xD45C;&#xB85C; &#xD45C;&#xD604;&#xD558;&#xC138;&#xC694;.</p>
+    <button class="answer-toggle" onclick="toggle('a1', this)">&#xC815;&#xB2F5; &#xBCF4;&#xAE30; &#x25BE;</button>
+    <div class="answer-section" id="a1">
+      <div class="answer-label">&#x2705; &#xC815;&#xB2F5; &#xCF54;&#xB4DC;</div>
+      <pre id="pre1"></pre>
+      <div class="diagram-label">&#x1F4CA; &#xB80C;&#xB354;&#xB9C1; &#xACB0;&#xACFC;</div>
+      <div class="diagram-wrap" id="diagram1"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="q-header">
+      <div class="q-num">2</div>
+      <div class="q-title">&#xCE74;&#xD398; &#xC8FC;&#xBB38; &#xC2DC;&#xD000;&#xC2A4; &#xB2E4;&#xC774;&#xC5B4;&#xADF8;&#xB7A8;</div>
+      <span class="q-badge">Sequence</span>
+    </div>
+    <div class="problem-box">
+      &#xC544;&#xB798; &#xC21C;&#xC11C;&#xB97C; <strong>&#xC2DC;&#xD000;&#xC2A4; &#xB2E4;&#xC774;&#xC5B4;&#xADF8;&#xB7A8;</strong>&#xC73C;&#xB85C; &#xC791;&#xC131;&#xD558;&#xC138;&#xC694;.<br>
+      <strong>&#xC190;&#xB2D8;</strong> &#x2192; <strong>&#xC9C1;&#xC6D0;</strong>: "&#xC544;&#xBA54;&#xB9AC;&#xCE74;&#xB178; &#xD55C; &#xC794; &#xC8FC;&#xC138;&#xC694;" (&#xC694;&#xCCAD;)<br>
+      <strong>&#xC9C1;&#xC6D0;</strong> &#x2192; <strong>&#xBC14;&#xB9AC;&#xC2A4;&#xD0C0;</strong>: "&#xC544;&#xBA54;&#xB9AC;&#xCE74;&#xB178; 1&#xC794;" (&#xC804;&#xB2EC;)<br>
+      <strong>&#xBC14;&#xB9AC;&#xC2A4;&#xD0C0;</strong> &#x2192; <strong>&#xC9C1;&#xC6D0;</strong>: "&#xC644;&#xB8CC;" (&#xC751;&#xB2F5;, &#xC810;&#xC120;)<br>
+      <strong>&#xC9C1;&#xC6D0;</strong> &#x2192; <strong>&#xC190;&#xB2D8;</strong>: "&#xC74C;&#xB8CC; &#xB098;&#xC654;&#xC2B5;&#xB2C8;&#xB2E4;" (&#xC751;&#xB2F5;, &#xC810;&#xC120;)
+    </div>
+    <p class="hint"><span>&#x1F4A1; &#xD78C;&#xD2B8;</span>: &#xC694;&#xCCAD;&#xC740; <code>->></code>, &#xC751;&#xB2F5;(&#xC810;&#xC120;)&#xC740; <code>-->></code> &#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC138;&#xC694;.</p>
+    <button class="answer-toggle" onclick="toggle('a2', this)">&#xC815;&#xB2F5; &#xBCF4;&#xAE30; &#x25BE;</button>
+    <div class="answer-section" id="a2">
+      <div class="answer-label">&#x2705; &#xC815;&#xB2F5; &#xCF54;&#xB4DC;</div>
+      <pre id="pre2"></pre>
+      <div class="diagram-label">&#x1F4CA; &#xB80C;&#xB354;&#xB9C1; &#xACB0;&#xACFC;</div>
+      <div class="diagram-wrap" id="diagram2"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="q-header">
+      <div class="q-num">3</div>
+      <div class="q-title">&#xCDE8;&#xBBF8; &#xBD84;&#xD3EC; &#xD30C;&#xC774; &#xCC28;&#xD2B8;</div>
+      <span class="q-badge">Pie Chart</span>
+    </div>
+    <div class="problem-box">
+      &#xC544;&#xB798; &#xB370;&#xC774;&#xD130;&#xB97C; <strong>&#xD30C;&#xC774; &#xCC28;&#xD2B8;</strong>&#xB85C; &#xC791;&#xC131;&#xD558;&#xC138;&#xC694;.<br>
+      &#xC81C;&#xBAA9;: <strong>&#xC6B0;&#xB9AC; &#xBC18; &#xCDE8;&#xBBF8; &#xBD84;&#xD3EC;</strong><br>
+      &#x1F3AE; &#xAC8C;&#xC784;: <strong>35</strong> &nbsp;|&nbsp; &#x1F4DA; &#xB3C5;&#xC11C;: <strong>25</strong> &nbsp;|&nbsp;
+      &#x1F3B5; &#xC74C;&#xC545;: <strong>20</strong> &nbsp;|&nbsp; &#x1F3C3; &#xC6B4;&#xB3D9;: <strong>15</strong> &nbsp;|&nbsp; &#xAE30;&#xD0C0;: <strong>5</strong>
+    </div>
+    <p class="hint"><span>&#x1F4A1; &#xD78C;&#xD2B8;</span>: <code>pie</code> &#xD0A4;&#xC6CC;&#xB4DC;&#xB85C; &#xC2DC;&#xC791;&#xD558;&#xACE0; <code>title</code>&#xC744; &#xC9C0;&#xC815;&#xD558;&#xC138;&#xC694;.</p>
+    <button class="answer-toggle" onclick="toggle('a3', this)">&#xC815;&#xB2F5; &#xBCF4;&#xAE30; &#x25BE;</button>
+    <div class="answer-section" id="a3">
+      <div class="answer-label">&#x2705; &#xC815;&#xB2F5; &#xCF54;&#xB4DC;</div>
+      <pre id="pre3"></pre>
+      <div class="diagram-label">&#x1F4CA; &#xB80C;&#xB354;&#xB9C1; &#xACB0;&#xACFC;</div>
+      <div class="diagram-wrap" id="diagram3"></div>
+    </div>
+  </div>
+
+  <script>
+    mermaid.initialize({ startOnLoad: false, theme: 'default' });
+
+    const diagrams = {
+      a1: {
+        pre: 'pre1',
+        wrap: 'diagram1',
+        code: [
+          'flowchart TD',
+          '    A[\uc2dc\uc791] --> B[\uc544\uc774\ub514/\ube44\ubc00\ubc88\ud638 \uc785\ub825]',
+          '    B --> C{"\ub85c\uadf8\uc778 \uc131\uacf5?"}',
+          '    C -->|Yes| D[\uba54\uc778 \ud398\uc774\uc9c0 \uc774\ub3d9]',
+          '    C -->|No| E[\uc624\ub958 \uba54\uc2dc\uc9c0 \ud45c\uc2dc]',
+          '    E --> B'
+        ].join('\n')
+      },
+      a2: {
+        pre: 'pre2',
+        wrap: 'diagram2',
+        code: [
+          'sequenceDiagram',
+          '    \uc190\ub2d8->>\uc9c1\uc6d0: \uc544\uba54\ub9ac\uce74\ub178 \ud55c \uc794 \uc8fc\uc138\uc694',
+          '    \uc9c1\uc6d0->>\ubc14\ub9ac\uc2a4\ud0c0: \uc544\uba54\ub9ac\uce74\ub178 1\uc794',
+          '    \ubc14\ub9ac\uc2a4\ud0c0-->>\uc9c1\uc6d0: \uc644\ub8cc',
+          '    \uc9c1\uc6d0-->>\uc190\ub2d8: \uc74c\ub8cc \ub098\uc654\uc2b5\ub2c8\ub2e4'
+        ].join('\n')
+      },
+      a3: {
+        pre: 'pre3',
+        wrap: 'diagram3',
+        code: [
+          'pie',
+          '    title \uc6b0\ub9ac \ubc18 \ucde8\ubbf8 \ubd84\ud3ec',
+          '    "\uac8c\uc784" : 35',
+          '    "\ub3c5\uc11c" : 25',
+          '    "\uc74c\uc545" : 20',
+          '    "\uc6b4\ub3d9" : 15',
+          '    "\uae30\ud0c0" : 5'
+        ].join('\n')
+      }
+    };
+
+    // pre 코드박스 채우기
+    for (const key in diagrams) {
+      document.getElementById(diagrams[key].pre).textContent = diagrams[key].code;
+    }
+
+    async function toggle(id, btn) {
+      const el = document.getElementById(id);
+      el.classList.toggle('open');
+      btn.textContent = el.classList.contains('open') ? '\uc815\ub2f5 \ub2eb\uae30 \u25b4' : '\uc815\ub2f5 \ubcf4\uae30 \u25be';
+
+      if (el.classList.contains('open')) {
+        const { pre, wrap, code } = diagrams[id];
+        const container = document.getElementById(wrap);
+        if (!container.querySelector('svg')) {
+          try {
+            const { svg } = await mermaid.render('svg-' + id, code);
+            container.innerHTML = svg;
+          } catch(e) {
+            container.textContent = '렌더링 오류: ' + e.message;
+          }
+        }
+      }
+    }
+  </script>
+</body>
+</html>
