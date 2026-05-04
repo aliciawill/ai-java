@@ -121,7 +121,7 @@ classDiagram
 
     JFrame <|-- SimpleCalculator
     JFrame <|-- DiaryUI
-    SimpleCalculator +-- CalcActionListener : 내부 클래스
+    SimpleCalculator *-- CalcActionListener : 내부 클래스
     DiaryUI o-- DiaryDAO : 사용
     DiaryDAO ..> DiaryDTO : 생성·매핑
     DiaryDAO ..> DBConnector : 연결 획득
